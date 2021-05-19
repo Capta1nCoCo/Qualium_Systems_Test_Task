@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    float rotationSpeed = 0.5f;
+    [SerializeField] Joystick joystick;
+
+    [SerializeField] [Range(0.1f, 1f)] float rotationSpeed = 0.5f;
     
     // Update is called once per frame
     void Update()
@@ -15,9 +17,9 @@ public class PlatformController : MonoBehaviour
    
     private void ProcessRotation()
     {
-        float xRotation = Input.GetAxis("Vertical") * rotationSpeed;
+        float xRotation = joystick.Vertical * rotationSpeed;
         transform.Rotate(xRotation, 0, 0);
-        float zRotation = Input.GetAxis("Horizontal") * rotationSpeed;
+        float zRotation = joystick.Horizontal * rotationSpeed;
         transform.Rotate(0, 0, -zRotation);
     }
 }
